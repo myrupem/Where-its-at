@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div className="app">
-     <p>Hejhej!</p>
+     <p>Where its @</p>
     </div>
   )
 }
