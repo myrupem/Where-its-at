@@ -3,3 +3,10 @@
   margin: 0;
   padding: 0;
 }
+
+#root {
+  background-color: #231F42;
+  width: 100%;
+  min-height: 100vh;
+  color: beige;
+}
