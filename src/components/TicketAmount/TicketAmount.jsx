@@ -3,7 +3,6 @@ import React from 'react';
 
 function TicketAmount({ info, numOfTickets, setNumOfTickets }) {
 
-  
   if (React.isValidElement(info)) {
     return (
       <div className='ticket-amount__wrapper'>

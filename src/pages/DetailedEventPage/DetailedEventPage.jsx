@@ -30,7 +30,7 @@ function DetailedEventPage() {
   const handleAddToCart = () => {
     const newTicket = {
       uid: crypto.randomUUID(),
-      id: event.id, ///use uuiid!!
+      id: event.id,
       name: event.name,
       price: event.price,
       quantity: numOfTickets
