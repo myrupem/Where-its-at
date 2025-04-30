@@ -1,8 +1,16 @@
 import Button from '../../components/Button/Button'
 import CartList from '../../components/CartList/CartList'
+import useCartStore from '../../store/useCartStore'
 
 function OrderPage() {
     const btnText = 'Checkout/Order'
+    const cart = useCartStore((state) => state.cart)
+    const addToCart = useCartStore((state) => state.addToCart)
+
+  function handleClick() {
+    
+    addToCart(tickets)
+  }
 
   return (
     <> 
@@ -10,7 +18,7 @@ function OrderPage() {
         <CartList />
         <p>Total for your order</p>
         <p>total amout of the order</p>
-        <Button text={btnText} />
+        <Button handleClick={handleClick} text={btnText} />
     </>
   )
 }
