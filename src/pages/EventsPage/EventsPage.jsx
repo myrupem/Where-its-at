@@ -10,8 +10,8 @@ function EventsPage() {
   useEffect(() => {
     const getEvents = async () => {
       const data = await fetchData();
-      setEvents(data.events);
-      console.log(data.events)
+      setEvents(data);
+      console.log(data)
     };
     getEvents();
   }, []);
