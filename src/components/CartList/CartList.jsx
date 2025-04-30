@@ -1,12 +1,15 @@
 import NameNPlace from "../NameNPlace/NameNPlace"
 import TicketAmount from "../TicketAmount/TicketAmount"
+import useCartStore from "../../store/useCartStore";
 
 function CartList() {
-  const info = NameNPlace
+  const cart = useCartStore((state) => state.cart);
 
   return (
     <> 
-        <TicketAmount info={info}/> //iterera över arrayen med cart.
+      {cart.map((event) => (
+      <TicketAmount key={event.id} info={<NameNPlace event={event} />} event={event} />
+    ))}
     </>
   )
 }

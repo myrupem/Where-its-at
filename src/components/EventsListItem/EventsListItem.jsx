@@ -1,13 +1,12 @@
-import React from 'react'
+import { Link } from "react-router-dom"
 
 function EventsListItem({ event }) {
-    let month = event.when.date
-    let trimmedMonth = month.slice(0, 6).toUpperCase()
 
   return (
     <> 
+      <Link to={`/event/${event.id}`} className="event-list__item">
         <section className='date__wrapper'>
-            <p>{trimmedMonth}</p>
+            <p>{event.when.date.slice(0, 6).toUpperCase()}</p>
         </section>
         <section>
             <h2>{event.name}</h2>
@@ -15,6 +14,7 @@ function EventsListItem({ event }) {
             <p>{event.when.from} - {event.when.to}</p>
         </section>
         <p>{event.price} sek</p>
+      </Link>
     </>
   )
 }
