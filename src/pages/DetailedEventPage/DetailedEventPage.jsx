@@ -5,10 +5,14 @@ import Button from "../../components/Button/Button"
 import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { fetchData } from "../../services/api"
+import useCartStore from "../../store/useCartStore"
 
 function DetailedEventPage() {
   const { id } = useParams()
   const [event, setEvent] = useState(null)
+  const [numOfTickets, setNumOfTickets] = useState(0)
+
+  const addToCart = useCartStore((state) => state.addToCart)
 
   const text = 'Add to cart'
 
@@ -23,13 +27,29 @@ function DetailedEventPage() {
     getEvent()
   }, [id]);
 
+  const handleAddToCart = () => {
+    const newTicket = {
+      uid: crypto.randomUUID(),
+      id: event.id,
+      name: event.name,
+      price: event.price,
+      quantity: numOfTickets
+    };
+    addToCart(newTicket);
+  }
+
   if (!event) return <p>Laddar...</p>;
 
   return (
     <>
       <DetailedEventInfo event={event}/>
-      <TicketAmount info={event.price} event={event}/>
-      <Button text={text}/>
+      <TicketAmount 
+      info={event.price}
+      event={event}
+      numOfTickets={numOfTickets}
+      setNumOfTickets={setNumOfTickets}
+      />
+      <Button text={text} handleClick={handleAddToCart}/>
     </>
   )
 }
