@@ -3,13 +3,21 @@ import CartList from '../../components/CartList/CartList'
 import useCartStore from '../../store/useCartStore'
 
 function OrderPage() {
-    const btnText = 'Checkout/Order'
+    const btnText = 'Checkout/Send Order'
     const cart = useCartStore((state) => state.cart)
-    const addToCart = useCartStore((state) => state.addToCart)
+    const addToBoughtTickets = useCartStore((state) => state.addToBoughtTickets)
+    const clearCart = useCartStore((state) => state.clearCart)
 
-  function handleClick() {
-    
-    addToCart(tickets)
+    function calculateTotal() {
+      return cart.reduce((total, ticket) => {
+        return total + ticket.price * ticket.quantity;
+      }, 0);
+    }
+
+  function handleSendOrder() {
+    if(cart.length === 0) return;
+    addToBoughtTickets(cart)
+    clearCart()
   }
 
   return (
@@ -17,8 +25,8 @@ function OrderPage() {
         <h1>Order</h1>
         <CartList />
         <p>Total for your order</p>
-        <p>total amout of the order</p>
-        <Button handleClick={handleClick} text={btnText} />
+        <p>{calculateTotal()} sek</p>
+        <Button handleClick={handleSendOrder} text={btnText} />
     </>
   )
 }

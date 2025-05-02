@@ -6,11 +6,13 @@ function TicketAmount({ info, numOfTickets, setNumOfTickets }) {
   if (React.isValidElement(info)) {
     return (
       <div className='ticket-amount__wrapper'>
-        <p>{info}</p>
+        <div className="ticket-amount__info">
+          {info}
+        </div>
         <section className='ticket-amount__select-amount'>
-          <button onClick={() => setNumOfTickets (prev => Math.max(prev - 1, 0))}>-</button>
+          <button onClick={() => setNumOfTickets(prev => Math.max(prev - 1, 0))}>-</button>
           <p>{numOfTickets}</p>
-          <button onClick={() => setNumOfTickets (prev => prev + 1)}>+</button>
+          <button onClick={() => setNumOfTickets(prev => prev + 1)}>+</button>
         </section>
       </div>
     )
