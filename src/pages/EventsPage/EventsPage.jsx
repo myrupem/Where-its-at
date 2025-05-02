@@ -11,7 +11,6 @@ function EventsPage() {
     const getEvents = async () => {
       const data = await fetchData();
       setEvents(data);
-      console.log(data)
     };
     getEvents();
   }, []);

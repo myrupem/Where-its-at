@@ -2,7 +2,7 @@ import DetailedEventInfo from "../../components/DetailedEventInfo/DetailedEventI
 import TicketAmount from "../../components/TicketAmount/TicketAmount"
 import Button from "../../components/Button/Button"
 
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { fetchData } from "../../services/api"
 import useCartStore from "../../store/useCartStore"
@@ -13,11 +13,11 @@ function DetailedEventPage() {
   const [numOfTickets, setNumOfTickets] = useState(0)
 
   const addToCart = useCartStore((state) => state.addToCart)
+  const navigate = useNavigate();
 
   const text = 'Add to cart'
 
   useEffect(() => {
-    console.log("ID from URL params:", id);
     const getEvent = async () => {
       const allEvents = await fetchData();
       console.log("allEvents:", allEvents);
@@ -30,12 +30,11 @@ function DetailedEventPage() {
   const handleAddToCart = () => {
     const newTicket = {
       uid: crypto.randomUUID(),
-      id: event.id,
-      name: event.name,
-      price: event.price,
+      ...event,
       quantity: numOfTickets
     };
     addToCart(newTicket);
+    navigate(-1);
   }
 
   if (!event) return <p>Laddar...</p>;
