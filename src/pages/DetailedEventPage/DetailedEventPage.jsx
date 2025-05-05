@@ -31,7 +31,7 @@ function DetailedEventPage() {
     const newTicket = {
       uid: crypto.randomUUID(),
       ...event,
-      quantity: numOfTickets
+      quantity: numOfTickets,
     };
     addToCart(newTicket);
     navigate(-1);
