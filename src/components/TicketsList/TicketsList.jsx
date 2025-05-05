@@ -1,10 +1,15 @@
 import Ticket from "../Ticket/Ticket"
+import useCartStore from "../../store/useCartStore"
 
 function TicketsList() {
+const tickets = useCartStore((state) => state.boughtTickets)
+console.log("Tickets:", tickets);
+
   return (
     <> 
-        <div>TicketsList</div>
-        <Ticket />
+      {tickets.map((ticket) => (
+        <Ticket key={ticket.uid} ticket={ticket} />
+    ))}
     </>
   )
 }
