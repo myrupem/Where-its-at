@@ -7,6 +7,7 @@ const ListCart = styled.section`
 display: flex;
 flex-direction: column;
 padding: 1rem;
+margin-top: 5rem;
 `
 
 function CartList() {

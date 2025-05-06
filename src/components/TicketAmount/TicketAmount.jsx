@@ -1,4 +1,3 @@
-import './ticketAmount.css'
 import React from 'react';
 import useCartStore from '../../store/useCartStore';
 import styled from 'styled-components';
@@ -17,6 +16,8 @@ const TicketWrapper = styled.div`
 `
 
 const TicketInfo = styled.div`
+  display: flex;
+  flex-direction: column;
   border-bottom: 1px solid #F56B9A;
   justify-content: center;
   align-items: center;
@@ -53,8 +54,6 @@ const TicketQty = styled.p`
 `
 
 function TicketAmount({ info, event, numOfTickets, setNumOfTickets }) {
-
-  const cart = useCartStore((state) => state.cart)
   const updateQuantity = useCartStore((state) => state.updateQuantity)
 
   //Kommer från OrderPage

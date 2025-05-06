@@ -18,7 +18,8 @@ font-family: 'Sansita One';
 font-size: 32px;
 font-weight: 400;
 color: #F56B9A;
-margin: 1.5rem 0 2rem 0;
+position: absolute;
+top: 5%;
 `
 
 const TotalText = styled.p`

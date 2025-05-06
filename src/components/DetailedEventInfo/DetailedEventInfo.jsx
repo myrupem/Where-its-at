@@ -1,16 +1,26 @@
 import NameNPlace from "../NameNPlace/NameNPlace"
+import styled from "styled-components"
 
-import './detailedEventInfo.css'
+const DetailedWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const Where = styled.p`
+  font-size: 16px;
+  font-weight: 400;
+  font-style: italic;
+`
 
 function DetailedEventInfo({ event }) {
-  const text = 'Add to cart'
 
   return (
-      <section className="detailed__wrapper"> 
-        <h1>Event</h1>
+      <DetailedWrapper> 
         <NameNPlace event={event}/>
-        <p>@ {event.where}</p>
-      </section>
+        <Where>@ {event.where}</Where>
+      </DetailedWrapper>
   )
 }
 

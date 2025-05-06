@@ -22,9 +22,20 @@ font-weight: 400;
 color: #37AEAB;
 `
 
+const NoEvent = styled.p`
+  align-items: center;
+  text-align: center;
+  padding: 0 0 18rem 0;
+  margin: 8rem 0 5rem 0;
+  font-family: 'Sansita One';
+  font-weight: 400;
+  font-size: 20px;
+  color: #F56B9A;
+`
+
 function NameNPlace({ event }) {
   if (!event) {
-    return <p>Loading event...</p>;
+    return <NoEvent>Loading event...</NoEvent>;
   }
 
   return (
