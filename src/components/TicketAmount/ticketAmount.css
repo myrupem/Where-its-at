@@ -1,14 +1,1 @@
-.ticket-amount__wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    color: antiquewhite;
-}
 
-.ticket-amount__select-amount {
-    display: flex;
-    flex-direction: row;
-    padding: 1rem;
-    gap: 1rem;
-}
