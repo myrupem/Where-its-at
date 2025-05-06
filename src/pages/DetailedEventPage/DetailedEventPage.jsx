@@ -1,6 +1,6 @@
 import DetailedEventInfo from "../../components/DetailedEventInfo/DetailedEventInfo"
 import TicketAmount from "../../components/TicketAmount/TicketAmount"
-import Button from "../../components/Button/Button"
+import StyledButton from "../../components/Button/Button"
 
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
@@ -48,7 +48,7 @@ function DetailedEventPage() {
       numOfTickets={numOfTickets}
       setNumOfTickets={setNumOfTickets}
       />
-      <Button text={text} handleClick={handleAddToCart}/>
+      <StyledButton text={text} handleClick={handleAddToCart}/>
     </>
   )
 }

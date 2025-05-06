@@ -10,3 +10,10 @@
   min-height: 100vh;
   color: beige;
 }
+
+@font-face {
+  font-family: 'Sansita One';
+  src: url('./assets/fonts/sansita-one.regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}

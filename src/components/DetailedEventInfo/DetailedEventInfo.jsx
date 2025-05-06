@@ -1,5 +1,3 @@
-import Button from "../Button/Button"
-import TicketAmount from "../TicketAmount/TicketAmount"
 import NameNPlace from "../NameNPlace/NameNPlace"
 
 import './detailedEventInfo.css'

@@ -35,7 +35,7 @@ function Layout() {
         navigate(swipeRoutes[currentIndex - 1]);
       }
     },
-    preventDefaultTouchmoveEvent: true,
+    preventScrollOnSwipe: true,
     trackTouch: true,
   });
 
@@ -54,7 +54,13 @@ function Layout() {
   }
 
   return (
-    <section className='layout-wrapper' {...handlers} style={{ touchAction: 'none', height: '100vh', overflow: 'hidden', position: 'relative' }}>
+    <section className='layout-wrapper' {...handlers} 
+      style={{ 
+        touchAction: 'none', 
+        minHeight: '100vh', 
+        overflow: 'hidden', 
+        position: 'relative' 
+      }}>
        <AnimatePresence>
         <motion.div
          key={location.pathname}
@@ -68,11 +74,13 @@ function Layout() {
          exit={{ x: getExitX() }}
          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
          style={{
-           position: 'absolute',
-           top: 0,
-           left: 0,
-           overflow: 'hidden',
-           zIndex: 1,
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          overflowY: 'auto',
+          height: '100%',
+          width: '100%',
+          zIndex: 1,
          }}
        >
           <Outlet />

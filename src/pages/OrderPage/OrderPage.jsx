@@ -1,4 +1,4 @@
-import Button from '../../components/Button/Button'
+import StyledButton from '../../components/Button/Button'
 import CartList from '../../components/CartList/CartList'
 import useCartStore from '../../store/useCartStore'
 import { useNavigate } from 'react-router-dom'
@@ -34,7 +34,7 @@ function OrderPage() {
           <CartList />
           <p>Total for your order</p>
           <p>{calculateTotal()} sek</p>
-          <Button handleClick={handleSendOrder} text={btnText} />
+          <StyledButton handleClick={handleSendOrder} text={btnText} />
         </>
       )}
     </>
