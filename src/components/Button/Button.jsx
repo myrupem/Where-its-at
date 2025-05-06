@@ -10,7 +10,10 @@ font-family: 'Fira Sans';
 font-weight: 600;
 font-size: 22px;
 text-align: center;
+border: none;
 border-radius: 3px;
+margin-top: auto;
+margin-bottom: 2rem;
 `
 
 function StyledButton({ text, handleClick }) {
