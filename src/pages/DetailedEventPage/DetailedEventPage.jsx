@@ -1,11 +1,41 @@
 import DetailedEventInfo from "../../components/DetailedEventInfo/DetailedEventInfo"
 import TicketAmount from "../../components/TicketAmount/TicketAmount"
-import Button from "../../components/Button/Button"
+import StyledButton from "../../components/Button/Button"
 
 import { useParams, useNavigate } from "react-router-dom"
 import { useEffect, useState } from "react"
 import { fetchData } from "../../services/api"
 import useCartStore from "../../store/useCartStore"
+
+import styled from "styled-components"
+
+const DetEventPageWrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: 'Fira Sans';
+  padding: 3rem;
+  padding-top: 80px;
+`
+const Title = styled.h1`
+  font-family: 'Sansita One';
+  font-size: 32px;
+  font-weight: 400;
+  align-items: center;
+  color: #F56B9A;
+  position: absolute;
+  top: 5%;
+`
+
+const SubTitle = styled.p`
+  font-size: 19px;
+  font-weight: 400;
+  font-style: italic;
+  text-align: center;
+`
+
 
 function DetailedEventPage() {
   const { id } = useParams()
@@ -40,7 +70,9 @@ function DetailedEventPage() {
   if (!event) return <p>Laddar...</p>;
 
   return (
-    <>
+    <DetEventPageWrapper>
+      <Title>Event</Title>
+      <SubTitle>You are about to score some tickets to</SubTitle>
       <DetailedEventInfo event={event}/>
       <TicketAmount 
       info={event.price}
@@ -48,8 +80,8 @@ function DetailedEventPage() {
       numOfTickets={numOfTickets}
       setNumOfTickets={setNumOfTickets}
       />
-      <Button text={text} handleClick={handleAddToCart}/>
-    </>
+      <StyledButton text={text} handleClick={handleAddToCart}/>
+    </DetEventPageWrapper>
   )
 }
 
