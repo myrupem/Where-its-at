@@ -34,6 +34,7 @@ const SubTitle = styled.p`
   font-weight: 400;
   font-style: italic;
   text-align: center;
+  margin: 1rem;
 `
 
 

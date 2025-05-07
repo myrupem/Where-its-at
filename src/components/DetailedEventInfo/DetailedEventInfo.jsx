@@ -6,6 +6,8 @@ const DetailedWrapper = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 1rem 0 3rem 0;
 `
 
 const Where = styled.p`
@@ -18,7 +20,7 @@ function DetailedEventInfo({ event }) {
 
   return (
       <DetailedWrapper> 
-        <NameNPlace event={event}/>
+        <NameNPlace variant={'detailed'}event={event}/>
         <Where>@ {event.where}</Where>
       </DetailedWrapper>
   )
