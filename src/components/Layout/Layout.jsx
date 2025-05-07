@@ -1,35 +1,38 @@
-import { Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useSwipeable } from 'react-swipeable'
-import { motion, AnimatePresence } from "framer-motion"
-import { useState, useEffect } from 'react'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { useSwipeable } from 'react-swipeable';
+import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect } from 'react';
 
-const swipeRoutes = ['/', '/events', '/order', '/tickets']
+const swipeRoutes = ['/', '/events', '/order', '/tickets'];
 
 function Layout() {
   const navigate = useNavigate();
   const location = useLocation();
-  const currentIndex = swipeRoutes.indexOf(location.pathname);
-  const isDetailedEventPage = location.pathname.startsWith('/event/')
+  const pathname = location.pathname;
+
+  const isDetailedPage = pathname.startsWith('/event/');
+  const currentIndex = swipeRoutes.indexOf(pathname);
 
   const [swipeDirection, setSwipeDirection] = useState(null);
+  const [isNavigatingToDetail, setIsNavigatingToDetail] = useState(false);
 
   useEffect(() => {
-    if(isDetailedEventPage) {
-      setSwipeDirection('right');
-    }
-  }, [isDetailedEventPage]);
+    // Reset swipeDirection after navigation
+    setSwipeDirection(null);
+    setIsNavigatingToDetail(isDetailedPage);
+  }, [pathname]);
 
   const handlers = useSwipeable({
     onSwipedLeft: () => {
-      if(!isDetailedEventPage && currentIndex < swipeRoutes.length - 1) {
+      if (!isDetailedPage && currentIndex < swipeRoutes.length - 1) {
         setSwipeDirection('left');
         navigate(swipeRoutes[currentIndex + 1]);
       }
     },
     onSwipedRight: () => {
-      if (isDetailedEventPage) {
-        setSwipeDirection(null);
-        navigate(- 1);
+      if (isDetailedPage) {
+        setSwipeDirection('right');
+        navigate(-1);
       } else if (currentIndex > 0) {
         setSwipeDirection('right');
         navigate(swipeRoutes[currentIndex - 1]);
@@ -40,54 +43,46 @@ function Layout() {
   });
 
   const getInitialX = () => {
-    if (isDetailedEventPage) return '100%'; // Kommer in från höger
-    return swipeDirection === 'left' ? '100%' : '-100%';
-  };
-  
-  const getExitX = () => {
-    if (isDetailedEventPage) return '100%'; // Går ut åt höger
-    return swipeDirection === 'left' ? '-100%' : '100%';
+    if (isDetailedPage && isNavigatingToDetail) return '100%'; // In från höger
+    return swipeDirection === 'left' ? '100%' : swipeDirection === 'right' ? '-100%' : 0;
   };
 
-  if (currentIndex === -1 && !isDetailedEventPage) {
-    return <Outlet />;
-  }
+  const getExitX = () => {
+    if (isDetailedPage) return '100%'; // Ut åt höger
+    return swipeDirection === 'left' ? '-100%' : swipeDirection === 'right' ? '100%' : 0;
+  };
 
   return (
-    <section className='layout-wrapper' {...handlers} 
-      style={{ 
-        touchAction: 'none', 
-        minHeight: '100vh', 
-        overflow: 'hidden', 
-        position: 'relative' 
-      }}>
-       <AnimatePresence>
+    <section
+      {...handlers}
+      style={{
+        touchAction: 'none',
+        minHeight: '100vh',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
+      <AnimatePresence mode="wait">
         <motion.div
-         key={location.pathname}
-         initial={{
-           x: getInitialX(),
-           position: 'absolute',
-           width: '100%',
-           height: '100%',
-         }}
-         animate={{ x: 0 }}
-         exit={{ x: getExitX() }}
-         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-         style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          overflowY: 'auto',
-          height: '100%',
-          width: '100%',
-          zIndex: 1,
-         }}
-       >
+          key={pathname}
+          initial={{ x: getInitialX() }}
+          animate={{ x: 0 }}
+          exit={{ x: getExitX() }}
+          transition={{ type: 'tween', duration: 0.3 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            overflowY: 'auto',
+          }}
+        >
           <Outlet />
         </motion.div>
       </AnimatePresence>
     </section>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
