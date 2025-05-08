@@ -1,12 +1,15 @@
-# React + Vite
+# Where it's @
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Externa bibliotek:
 
-Currently, two official plugins are available:
+### UUID
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Jag har använt mig av UUID för att hålla koll på biljetter och evenemang, superenkelt att använda och smidigt. Den genererar en sträng med random nummer och bokstäver som man kan använda som id.
 
-## Expanding the ESLint configuration
+### Styled Components
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+För stylingen använde jag mig av styled-components. Man stylar verje component för sig vilket gör att man enbart behöver styla en gång, då stylingen är kopplad till komponenten och återanvänds automatiskt varje gång komponenten renderas.
+
+### React Swipeable
+
+För att navigera runt i appen har jag använt mig av biblioteket react-swipeable. Den lyssnar på användarens swipe-gester, t.ex. om man sveper vänster eller höger på mobilen. Med hjälp av useSwipeable skapar jag ett objekt med händelsehanterare (handlers) för olika swipes. Dessa handlers sätts på ett wrapper-element i layouten så att hela sidan kan reagera på swipes. När en swipe upptäcks kan jag t.ex. navigera till en annan vy eller trigga en animation.
