@@ -17,7 +17,7 @@ function Layout() {
   const [isNavigatingToDetail, setIsNavigatingToDetail] = useState(false);
 
   useEffect(() => {
-    // Reset swipeDirection after navigation
+    // Reset swipeDirection efter navigation
     setSwipeDirection(null);
     setIsNavigatingToDetail(isDetailedPage);
   }, [pathname]);

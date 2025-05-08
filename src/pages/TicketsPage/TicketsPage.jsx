@@ -2,6 +2,13 @@ import TicketsList from "../../components/TicketsList/TicketsList"
 import useCartStore from "../../store/useCartStore"
 import styled from "styled-components"
 
+
+const PageWrapper = styled.section`
+  min-height: 100vh;
+  width: 100vw;
+  background: linear-gradient(to bottom, #da4ca8 0%, #231F42 30%);
+`
+
 const NoTicketsWrapper = styled.section`
   display: flex;
   flex-direction: column;
@@ -22,16 +29,18 @@ function TicketsPage() {
 
   if (!boughtTickets || boughtTickets.length === 0) {
     return (
-      <NoTicketsWrapper> 
-        <NoTickets>You haven't bought any tickets yet!</NoTickets>
-      </NoTicketsWrapper>
+      <PageWrapper>
+        <NoTicketsWrapper> 
+          <NoTickets>You haven't bought any tickets yet!</NoTickets>
+        </NoTicketsWrapper>
+      </PageWrapper>
     )
   }
 
   return (
-    <section>
+    <PageWrapper>
       <TicketsList />
-    </section>
+    </PageWrapper>
  )
 }
 
